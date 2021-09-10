@@ -15,6 +15,8 @@ def is_equilateral(*arg: tuple[int]):
     for side in arg:
         if not isinstance(side, int):
             raise TypeError('Side must be an int')
+        if side <= 0:
+            raise ValueError('The side can\'t be lower or equal to Zero ')
         total += side
 
     return (total / 3) == arg[0]
@@ -27,6 +29,8 @@ def is_isosceles(*arg: tuple[int]):
     for side in arg:
         if not isinstance(side, int):
             raise TypeError('Side must be an int')
+        if side <= 0:
+            raise ValueError('The side can\'t be lower or equal to Zero ')
 
     return arg[0] == arg[1] or arg[1] == arg[2] or arg[2] == arg[0]
 
@@ -38,6 +42,8 @@ def is_right(*arg: tuple[int]):
     for side in arg:
         if not isinstance(side, int):
             raise TypeError('Side must be an int')
+        if side <= 0:
+            raise ValueError('The side can\'t be lower or equal to Zero ')
 
     sides = sorted(arg)
 
@@ -67,6 +73,9 @@ def main():
         except:
             print("Something else went wrong, Please try again")
         else:
+            if side <= 0:
+                print('The side can\'t be lower or equal to Zero ')
+                continue
             sides.append(side)
 
     triangle_type: str = classify_triangle(sides[0], sides[1], sides[2])
